@@ -1,0 +1,231 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{epstopdf}
+\usepackage{moreverb}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{tabularx}
+\usepackage{listings}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+\newcommand{\pdiff}[2]{\frac{\partial {#1}}{\partial {#2}}}
+
+
+
+\pagenumbering{gobble}
+\bibliographystyle{plain}
+\title{APPM 5720 Homework 2}
+\author{Will Boshell, Fortino Garcia, Alex Rybchuk, Parth Thakkar}
+\date{January 31, 2018}
+
+
+\begin{document}
+%\def\code#1{\texttt{#1}}
+
+\maketitle
+
+\section{Newton's Method}
+The code in \verb|newtonS.p| and \verb|newtonS.f90.Template| performed Newton's method and a set of simple sample functions
+\begin{align*}
+	& f\left( x \right) = e^x - 1 \, , \quad g\left( x \right) = x^2\\
+	& h\left( x \right) = \sin(x) \, , \quad r \left( x \right) = e^{-1/x}\\
+\end{align*}
+where each function has a root at $x = 0$, save for $r\left( x \right)$ which is undefined at $0$ though
+\begin{align*}
+	\lim_{x \to 0^+} r(x) = \lim_{x \to 0^+} e^{-1/x} = 0
+\end{align*}
+
+We recall that Newton's method is quadratically convergent to a root, under the assumption that the root is simple and the derivative is itself not $0$ at the root of interest (and the second derivative is bounded). Let us examine each function individually.
+
+\subsection{$e^x - 1$}
+Here is some discussion.
+\begin{table}[H]
+	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
+	  \hline
+	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
+	\hline 
+	 01 & -0.6321205588285577E+00 & -0.6321205588285577E+00 \tabularnewline
+	\hline 
+	 02 & 0.4869314375964384E+00 & -0.7703141921199606E+00 \tabularnewline
+	\hline 
+	 03 & 0.1894444060136254E+00 & -0.6154801567949590E+00 \tabularnewline
+	\hline 
+	 04 & 0.3031399383262888E-01 & -0.5198686660785536E+00 \tabularnewline
+	\hline 
+	 05 & 0.8848598680903540E-03 & -0.5005896024729687E+00 \tabularnewline
+	\hline 
+	 06 & 0.7820703579018673E-06 & -0.5000099574951582E+00 \tabularnewline
+	\hline 
+	 07 & 0.0000000000000000E+00 & -0.0000000000000000E+00 \tabularnewline
+	\hline 
+	\end{tabularx}
+\end{table}
+\noindent Maybe post discussion.
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{$x^2$}
+Here is some mild discussion on the issues.
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| }
+	  \hline
+	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
+	\hline 
+	 01 & -0.5000000000000000E+00 & -0.5000000000000000E+00 \tabularnewline
+	\hline 
+	 02 & 0.5000000000000000E+00 & -0.1000000000000000E+01 \tabularnewline
+	\hline 
+	 03 & 0.5000000000000000E+00 & -0.2000000000000000E+01 \tabularnewline
+	\hline 
+	 04 & 0.5000000000000000E+00 & -0.4000000000000000E+01 \tabularnewline
+	\hline 
+	 05 & 0.5000000000000000E+00 & -0.8000000000000000E+01 \tabularnewline
+	\hline 
+	 06 & 0.5000000000000000E+00 & -0.1600000000000000E+02 \tabularnewline
+	\hline 
+	 07 & 0.5000000000000000E+00 & -0.3200000000000000E+02 \tabularnewline
+	\hline 
+	 08 & 0.5000000000000000E+00 & -0.6400000000000000E+02 \tabularnewline
+	\hline 
+	 09 & 0.5000000000000000E+00 & -0.1280000000000000E+03 \tabularnewline
+	\hline 
+	 10 & 0.5000000000000000E+00 & -0.2560000000000000E+03 \tabularnewline
+	\hline 
+	 11 & 0.5000000000000000E+00 & -0.5120000000000000E+03 \tabularnewline
+	\hline 
+	 12 & 0.5000000000000000E+00 & -0.1024000000000000E+04 \tabularnewline
+	\hline 
+	 13 & 0.5000000000000000E+00 & -0.2048000000000000E+04 \tabularnewline
+	\hline 
+	 14 & 0.5000000000000000E+00 & -0.4096000000000000E+04 \tabularnewline
+	\hline 
+	 15 & 0.5000000000000000E+00 & -0.8192000000000000E+04 \tabularnewline
+	\hline 
+
+
+	\end{tabularx}
+\end{table}
+
+\noindent And now for a table with the updated method.
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
+	  \hline
+	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
+	\hline 
+	 01 & -0.1000000000000000E+01 & -0.1000000000000000E+01 \tabularnewline
+	\hline 
+	\end{tabularx}
+\end{table}
+\noindent Maybe further stuff.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{$\sin (x)$}
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
+	  \hline
+	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
+	\hline 
+	 01 & -0.1523676741017902E+01 & -0.1523676741017902E+01 \tabularnewline
+	\hline 
+	 02 & -0.3877900367215199E+00 & 0.2545093892175937E+00 \tabularnewline
+	\hline 
+	 03 & -0.9689555030589873E-01 & -0.1639888607225156E+00 \tabularnewline
+	\hline 
+	 04 & -0.1090466714959705E-02 & 0.1904667166963419E-01 \tabularnewline
+	\hline 
+	 05 & -0.1299242582583448E-08 & -0.2081059578567191E-04 \tabularnewline
+	\hline 
+	 06 & 0.0000000000000000E+00 & -0.0000000000000000E+00 \tabularnewline
+	\hline 
+	\end{tabularx}
+\end{table}
+
+\noindent But here is one with the cubic 
+\begin{table}[H]
+	\centering
+	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
+	  \hline
+	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^3$$\tabularnewline
+	\hline 
+	 01 & -0.1523676741017902E+01 & -0.1523676741017902E+01 \tabularnewline
+	\hline 
+	 02 & -0.3877900367215199E+00 & -0.1670363420049105E+00 \tabularnewline
+	\hline 
+	 03 & -0.9689555030589873E-01 & -0.2775395398051782E+00 \tabularnewline
+	\hline 
+	 04 & -0.1090466714959705E-02 & -0.3326792984270507E+00 \tabularnewline
+	\hline 
+	 05 & -0.1299242582583448E-08 & -0.3333333611137316E+00 \tabularnewline
+	\hline 
+	 06 & 0.0000000000000000E+00 & 0.0000000000000000E+00 \tabularnewline
+	\hline 
+\end{tabularx}
+\end{table}
+\noindent Further.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{$e^{-1/x}$}
+
+\begin{table}[htbp]
+	\centering
+	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
+	  \hline
+	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
+	\hline 
+	 01 & -0.1000000000000000E-03 & -0.1000000000000000E-03 \tabularnewline
+	\hline 
+	 02 & 0.9801000000000002E+00 & -0.9801000000000002E+04 \tabularnewline
+	\hline 
+	 03 & 0.9802980099999998E+00 & -0.1000202030405060E+05 \tabularnewline
+	\hline 
+	 04 & 0.9804920990079601E+00 & -0.1020506060403061E+05 \tabularnewline
+	\hline 
+	 05 & 0.9806823827241055E+00 & -0.1041012070006161E+05 \tabularnewline
+	\hline 
+	 06 & 0.9808689723299778E+00 & -0.1061720039624038E+05 \tabularnewline
+	\hline 
+	 07 & 0.9810519747073182E+00 & -0.1082629950052112E+05 \tabularnewline
+	\hline 
+	 08 & 0.9812314926443280E+00 & -0.1103741782460229E+05 \tabularnewline
+	\hline 
+	 09 & 0.9814076250301539E+00 & -0.1125055518381782E+05 \tabularnewline
+	\hline 
+	 10 & 0.9815804670383682E+00 & -0.1146571139703251E+05 \tabularnewline
+	\hline 
+	 11 & 0.9817501103001732E+00 & -0.1168288628654150E+05 \tabularnewline
+	\hline 
+	 12 & 0.9819166430679892E+00 & -0.1190207967797336E+05 \tabularnewline
+	\hline 
+	 13 & 0.9820801503700450E+00 & -0.1212329140019697E+05 \tabularnewline
+	\hline 
+	 14 & 0.9822407141565502E+00 & -0.1234652128523173E+05 \tabularnewline
+	\hline 
+	 15 & 0.9823984134379694E+00 & -0.1257176916816113E+05 \tabularnewline
+	\hline 
+\end{tabularx}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
