@@ -22,7 +22,7 @@
 \pagenumbering{gobble}
 \bibliographystyle{plain}
 \title{APPM 5720 Homework 2}
-\author{Will Boshell, Fortino Garcia, Alex Rybchuk, Parth Thakkar}
+\author{Wil Boshell, Fortino Garcia, Alex Rybchuk, Parth Thakkar}
 \date{January 31, 2018}
 
 
@@ -148,6 +148,7 @@ as demonstrated by the code.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{$\sin (x)$}
+Because $sin(x)$ only has single roots, one would expect Newton's method to converge quadratically like normal. When the code was run, it produced:
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
@@ -169,7 +170,7 @@ as demonstrated by the code.
 	\end{tabularx}
 \end{table}
 
-\noindent But here is one with the cubic 
+\noindent Neither ratio converges to a constant. However, when we check for cubic convergence, we get the following result:
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
@@ -190,7 +191,7 @@ as demonstrated by the code.
 	\hline 
 \end{tabularx}
 \end{table}
-\noindent Further.
+\noindent As we can see, $\frac{E_{n+1}}{E_n^3}$ converges quickly to a constant. This means that Newton's method converges cubically for $f(x)=sin(x)$. This might be because the sine function is almost linear near roots ($f''(x)=-sin(x)=-f(x)=0$ when $f(x)=0$), so this should help speed up the convergence rate.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
