@@ -45,7 +45,8 @@ where each function has a root at $x = 0$, save for $r\left( x \right)$ which is
 We recall that Newton's method is quadratically convergent to a root, under the assumption that the root is simple and the derivative is itself not $0$ at the root of interest (and the second derivative is bounded). Let us examine each function individually.
 
 \subsection{$e^x - 1$}
-Here is some discussion.
+This function meets the above assumptions for quadratic convergence. As such, it is observed that $E_{n+1}/E^2_n$ approximately converges after four iterations.
+ 
 \begin{table}[H]
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
@@ -67,7 +68,6 @@ Here is some discussion.
 	\hline 
 	\end{tabularx}
 \end{table}
-\noindent Maybe post discussion.
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,7 +139,8 @@ as demonstrated by the code.
 	 01 & -0.1000000000000000E+01 & -0.1000000000000000E+01 \tabularnewline
 	\hline 
 	\end{tabularx}
-\end{table}]
+\end{table}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -239,6 +240,7 @@ Because $sin(x)$ only has single roots, one would expect Newton's method to conv
 	\hline 
 \end{tabularx}
 \end{table}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
