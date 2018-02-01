@@ -72,8 +72,8 @@ Here is some discussion.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{$x^2$}
-Here is some mild discussion on the issues.
+\subsection{$f(x) = x^2$}
+We can see that this function has a double root at $x=0$. The derivative of f(x) is 0 at $x=0$. Thus, using the Newton's method, we would expect linear convergence instead of quadratic convergence. Implementation of Newton's method shows that the ratio of errors from adjecent time steps, i.e. $E_{n+1}/E_{n}$ is a constant, i.e. the convergence is linear.
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| }
@@ -115,7 +115,21 @@ Here is some mild discussion on the issues.
 	\end{tabularx}
 \end{table}
 
-\noindent And now for a table with the updated method.
+\noindent The Newton's method calculates the root after the $(k+1)^{th}$ iteration by the iterative formula
+\begin{equation}
+    x_{n+1} = x_{n} - \frac{f(x_{n}}{f'(x_{n})}
+\end{equation}
+Since we know that the root is a double root, we try modifying the formula by multiplying a factor of 2 to the 2nd term, i.e.
+\begin{equation}
+    x_{n+1} = x_{n} - 2 \frac{f(x_{n}}{f'(x_{n})}
+\end{equation}
+This iterative formula ends up converging to  the root $x=0$ immediately on the first iteration irrespective of our initial guess! Say our initial guess is $x=x_{0}$. Then the first iteration would result in
+\begin{align*}
+    x_{1} &= x_{0} - 2 \frac{f(x_{0}}{f'(x_{0})}\\
+    &= x_{0} - 2 \frac{x_{0}^{2}}{2 x_{0}}\\
+    &= 0
+\end{align*}
+as demonstrated by the code.
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
@@ -125,8 +139,7 @@ Here is some mild discussion on the issues.
 	 01 & -0.1000000000000000E+01 & -0.1000000000000000E+01 \tabularnewline
 	\hline 
 	\end{tabularx}
-\end{table}
-\noindent Maybe further stuff.
+\end{table}]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
