@@ -45,6 +45,7 @@ We recall that Newton's method is quadratically convergent to a root under the a
 \newline \textbf{NOTE}: For cases where Newton's method required a significant number of iterations, only the first $15$ iterations are used in the data tables that follow for the sake of brevity
 \subsection{$e^x - 1$}
 This function meets the above assumptions for quadratic convergence. As such, it is observed that $E_{n+1}/E^2_n$ is approximately constant and Newton's method converges after seven iterations.
+
 \begin{table}[H]
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
@@ -70,6 +71,7 @@ This function meets the above assumptions for quadratic convergence. As such, it
 
 \subsection{$f(x) = x^2$}
 We can see that this function has a double root at $x=0$ and that the derivative of $f(x)$ is $0$ at $x=0$. Thus, using Newton's method we would expect linear convergence instead of quadratic convergence. Implementation of Newton's method shows that the ratio of errors from adjacent time steps, i.e. $E_{n+1}/E_{n}$, is a constant implying linear convergence.
+
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| }
@@ -126,6 +128,7 @@ This iterative formula ends up converging to  the root $x=0$ immediately on the 
     &= 0
 \end{align*}
 as demonstrated by the code which stopped after a single iteration.
+
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
@@ -136,9 +139,11 @@ as demonstrated by the code which stopped after a single iteration.
 	\hline 
 	\end{tabularx}
 \end{table}
+<<<<<<< HEAD
 
 \subsection{$\sin (x)$}
 Because $\sin(x)$ only has single roots, one would expect Newton's method to converge quadratically as usual. When the code was run, it produced:
+
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
@@ -183,7 +188,6 @@ Because $\sin(x)$ only has single roots, one would expect Newton's method to con
 \end{table}
 \noindent As we can see, $E_{n+1}/E^3_n$ converges quickly to a constant. This means that Newton's method converges cubically for $f(x)=\sin(x)$. This might be because the sine function is almost linear near roots ($f''(x)=-\sin(x)=-f(x)=0$ when $f(x)=0$), so this should help speed up the convergence rate.
 
-
 \subsection{$e^{-1/x}$}
 We note that the derivative of $f(x) = e^{-1/x}$ is $f'(x) = \frac{e^{-1/x}}{x^2}$, which is undefined at $0$. From this we can see that every derivative of $f(x) = e^{-1/x}$ is an exponential multiplied by a rational function with a singularity at $0$ so that every derivative is undefined at the root. We then expect Newton's method to have extraordinarily slow convergence. A table containing the error ratios between successive iterations is below: 
 \begin{table}[H]
@@ -225,5 +229,6 @@ We note that the derivative of $f(x) = e^{-1/x}$ is $f'(x) = \frac{e^{-1/x}}{x^2
 \end{tabularx}
 \end{table}
 \noindent We see that that the ratio of $E_{n+1}/E_{n}$ is fairly constant and close to $1$, which indicates very slow linear convergence as expected.
+
 
 \end{document}
