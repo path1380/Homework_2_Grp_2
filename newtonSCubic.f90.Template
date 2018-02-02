@@ -33,7 +33,7 @@ program newton
      dx = -f/fp
      x = x + dx
      iter = iter + 1
-     write(*,'(A16,I2.2,4(E24.16))') ' FFFF ', iter, x, dx, ABS(dx/perr), ABS(dx/(perr**2))
+     write(*,'(A16,I2.2,5(E24.16))') ' FFFF ', iter, x, dx, ABS(dx/perr), ABS(dx/(perr**2)), ABS(dx/(perr**3))
      perr = dx
   end do
 

@@ -15,14 +15,12 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
-\newcommand{\pdiff}[2]{\frac{\partial {#1}}{\partial {#2}}}
 
 
 
-\pagenumbering{gobble}
 \bibliographystyle{plain}
 \title{APPM 5720 Homework 2}
-\author{Will Boshell, Fortino Garcia, Alex Rybchuk, Parth Thakkar}
+\author{Wil Boshell, Fortino Garcia, Alex Rybchuk, Parth Thakkar}
 \date{January 31, 2018}
 
 
@@ -32,7 +30,7 @@
 \maketitle
 
 \section{Newton's Method}
-The code in \verb|newtonS.p| and \verb|newtonS.f90.Template| performed Newton's method and a set of simple sample functions
+For this assignment, a basic perl script, \verb|newtonS.p|, was modified by the group to take in \verb|newtonS.f90.Template| and perform Newton's method on the set of sample functions
 \begin{align*}
 	& f\left( x \right) = e^x - 1 \, , \quad g\left( x \right) = x^2\\
 	& h\left( x \right) = \sin(x) \, , \quad r \left( x \right) = e^{-1/x}\\
@@ -42,190 +40,190 @@ where each function has a root at $x = 0$, save for $r\left( x \right)$ which is
 	\lim_{x \to 0^+} r(x) = \lim_{x \to 0^+} e^{-1/x} = 0
 \end{align*}
 
-We recall that Newton's method is quadratically convergent to a root, under the assumption that the root is simple and the derivative is itself not $0$ at the root of interest (and the second derivative is bounded). Let us examine each function individually.
-
+We recall that Newton's method is quadratically convergent to a root under the assumption that the root is simple and the derivative is itself not $0$ at the root of interest (and the second derivative is bounded). Let us examine each function individually.
+\newline 
+\newline \textbf{NOTE}: For cases where Newton's method required a significant number of iterations, only the first $15$ iterations are used in the data tables that follow for the sake of brevity
 \subsection{$e^x - 1$}
-Here is some discussion.
+This function meets the above assumptions for quadratic convergence. As such, it is observed that $E_{n+1}/E^2_n$ is approximately constant and Newton's method converges after seven iterations.
 \begin{table}[H]
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
 	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
 	\hline 
-	 01 & -0.6321205588285577E+00 & -0.6321205588285577E+00 \tabularnewline
+	 01 & 0.6321205588285577E+00 & 0.6321205588285577E+00 \tabularnewline
 	\hline 
-	 02 & 0.4869314375964384E+00 & -0.7703141921199606E+00 \tabularnewline
+	 02 & 0.4869314375964384E+00 & 0.7703141921199606E+00 \tabularnewline
 	\hline 
-	 03 & 0.1894444060136254E+00 & -0.6154801567949590E+00 \tabularnewline
+	 03 & 0.1894444060136254E+00 & 0.6154801567949590E+00 \tabularnewline
 	\hline 
-	 04 & 0.3031399383262888E-01 & -0.5198686660785536E+00 \tabularnewline
+	 04 & 0.3031399383262888E-01 & 0.5198686660785536E+00 \tabularnewline
 	\hline 
-	 05 & 0.8848598680903540E-03 & -0.5005896024729687E+00 \tabularnewline
+	 05 & 0.8848598680903540E-03 & 0.5005896024729687E+00 \tabularnewline
 	\hline 
-	 06 & 0.7820703579018673E-06 & -0.5000099574951582E+00 \tabularnewline
+	 06 & 0.7820703579018673E-06 & 0.5000099574951582E+00 \tabularnewline
 	\hline 
-	 07 & 0.0000000000000000E+00 & -0.0000000000000000E+00 \tabularnewline
+	 07 & 0.0000000000000000E+00 & 0.0000000000000000E+00 \tabularnewline
 	\hline 
 	\end{tabularx}
 \end{table}
-\noindent Maybe post discussion.
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{$x^2$}
-Here is some mild discussion on the issues.
+
+\subsection{$f(x) = x^2$}
+We can see that this function has a double root at $x=0$ and that the derivative of $f(x)$ is $0$ at $x=0$. Thus, using Newton's method we would expect linear convergence instead of quadratic convergence. Implementation of Newton's method shows that the ratio of errors from adjacent time steps, i.e. $E_{n+1}/E_{n}$, is a constant implying linear convergence.
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| }
 	  \hline
 	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
 	\hline 
-	 01 & -0.5000000000000000E+00 & -0.5000000000000000E+00 \tabularnewline
+	 01 & 0.5000000000000000E+00 & 0.5000000000000000E+00 \tabularnewline
 	\hline 
-	 02 & 0.5000000000000000E+00 & -0.1000000000000000E+01 \tabularnewline
+	 02 & 0.5000000000000000E+00 & 0.1000000000000000E+01 \tabularnewline
 	\hline 
-	 03 & 0.5000000000000000E+00 & -0.2000000000000000E+01 \tabularnewline
+	 03 & 0.5000000000000000E+00 & 0.2000000000000000E+01 \tabularnewline
 	\hline 
-	 04 & 0.5000000000000000E+00 & -0.4000000000000000E+01 \tabularnewline
+	 04 & 0.5000000000000000E+00 & 0.4000000000000000E+01 \tabularnewline
 	\hline 
-	 05 & 0.5000000000000000E+00 & -0.8000000000000000E+01 \tabularnewline
+	 05 & 0.5000000000000000E+00 & 0.8000000000000000E+01 \tabularnewline
 	\hline 
-	 06 & 0.5000000000000000E+00 & -0.1600000000000000E+02 \tabularnewline
+	 06 & 0.5000000000000000E+00 & 0.1600000000000000E+02 \tabularnewline
 	\hline 
-	 07 & 0.5000000000000000E+00 & -0.3200000000000000E+02 \tabularnewline
+	 07 & 0.5000000000000000E+00 & 0.3200000000000000E+02 \tabularnewline
 	\hline 
-	 08 & 0.5000000000000000E+00 & -0.6400000000000000E+02 \tabularnewline
+	 08 & 0.5000000000000000E+00 & 0.6400000000000000E+02 \tabularnewline
 	\hline 
-	 09 & 0.5000000000000000E+00 & -0.1280000000000000E+03 \tabularnewline
+	 09 & 0.5000000000000000E+00 & 0.1280000000000000E+03 \tabularnewline
 	\hline 
-	 10 & 0.5000000000000000E+00 & -0.2560000000000000E+03 \tabularnewline
+	 10 & 0.5000000000000000E+00 & 0.2560000000000000E+03 \tabularnewline
 	\hline 
-	 11 & 0.5000000000000000E+00 & -0.5120000000000000E+03 \tabularnewline
+	 11 & 0.5000000000000000E+00 & 0.5120000000000000E+03 \tabularnewline
 	\hline 
-	 12 & 0.5000000000000000E+00 & -0.1024000000000000E+04 \tabularnewline
+	 12 & 0.5000000000000000E+00 & 0.1024000000000000E+04 \tabularnewline
 	\hline 
-	 13 & 0.5000000000000000E+00 & -0.2048000000000000E+04 \tabularnewline
+	 13 & 0.5000000000000000E+00 & 0.2048000000000000E+04 \tabularnewline
 	\hline 
-	 14 & 0.5000000000000000E+00 & -0.4096000000000000E+04 \tabularnewline
+	 14 & 0.5000000000000000E+00 & 0.4096000000000000E+04 \tabularnewline
 	\hline 
-	 15 & 0.5000000000000000E+00 & -0.8192000000000000E+04 \tabularnewline
+	 15 & 0.5000000000000000E+00 & 0.8192000000000000E+04 \tabularnewline
 	\hline 
 
 
 	\end{tabularx}
 \end{table}
 
-\noindent And now for a table with the updated method.
+\noindent Newton's method calculates the root after the $(k+1)^{th}$ iteration by the iterative formula
+\begin{equation*}
+    x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})}
+\end{equation*}
+Since we know that the root is a double root, we try modifying the formula by multiplying a factor of $2$ to the $2$nd term, i.e.
+\begin{equation*}
+    x_{n+1} = x_{n} - 2 \frac{f(x_{n})}{f'(x_{n})}
+\end{equation*}
+This iterative formula ends up converging to  the root $x=0$ immediately on the first iteration irrespective of our initial guess! Say our initial guess is $x=x_{0}$. Then the first iteration would result in
+\begin{align*}
+    x_{1} &= x_{0} - 2 \frac{f(x_{0})}{f'(x_{0})}\\
+    &= x_{0} - 2 \frac{x_{0}^{2}}{2 x_{0}}\\
+    &= 0
+\end{align*}
+as demonstrated by the code which stopped after a single iteration.
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
 	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
 	\hline 
-	 01 & -0.1000000000000000E+01 & -0.1000000000000000E+01 \tabularnewline
+	 01 & 0.1000000000000000E+01 & 0.1000000000000000E+01 \tabularnewline
 	\hline 
 	\end{tabularx}
 \end{table}
-\noindent Maybe further stuff.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{$\sin (x)$}
+Because $\sin(x)$ only has single roots, one would expect Newton's method to converge quadratically as usual. When the code was run, it produced:
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
 	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
 	\hline 
-	 01 & -0.1523676741017902E+01 & -0.1523676741017902E+01 \tabularnewline
+	 01 & 0.1523676741017902E+01 & 0.1523676741017902E+01 \tabularnewline
 	\hline 
-	 02 & -0.3877900367215199E+00 & 0.2545093892175937E+00 \tabularnewline
+	 02 & 0.3877900367215199E+00 & 0.2545093892175937E+00 \tabularnewline
 	\hline 
-	 03 & -0.9689555030589873E-01 & -0.1639888607225156E+00 \tabularnewline
+	 03 & 0.9689555030589873E-01 & 0.1639888607225156E+00 \tabularnewline
 	\hline 
-	 04 & -0.1090466714959705E-02 & 0.1904667166963419E-01 \tabularnewline
+	 04 & 0.1090466714959705E-02 & 0.1904667166963419E-01 \tabularnewline
 	\hline 
-	 05 & -0.1299242582583448E-08 & -0.2081059578567191E-04 \tabularnewline
+	 05 & 0.1299242582583448E-08 & 0.2081059578567191E-04 \tabularnewline
 	\hline 
-	 06 & 0.0000000000000000E+00 & -0.0000000000000000E+00 \tabularnewline
+	 06 & 0.0000000000000000E+00 & 0.0000000000000000E+00 \tabularnewline
 	\hline 
 	\end{tabularx}
 \end{table}
 
-\noindent But here is one with the cubic 
+\noindent Neither ratio converges to a constant. However, when we check for cubic convergence, we get the following result:
 \begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
 	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^3$$\tabularnewline
 	\hline 
-	 01 & -0.1523676741017902E+01 & -0.1523676741017902E+01 \tabularnewline
+	 01 & 0.1523676741017902E+01 & 0.1523676741017902E+01 \tabularnewline
 	\hline 
-	 02 & -0.3877900367215199E+00 & -0.1670363420049105E+00 \tabularnewline
+	 02 & 0.3877900367215199E+00 & 0.1670363420049105E+00 \tabularnewline
 	\hline 
-	 03 & -0.9689555030589873E-01 & -0.2775395398051782E+00 \tabularnewline
+	 03 & 0.9689555030589873E-01 & 0.2775395398051782E+00 \tabularnewline
 	\hline 
-	 04 & -0.1090466714959705E-02 & -0.3326792984270507E+00 \tabularnewline
+	 04 & 0.1090466714959705E-02 & 0.3326792984270507E+00 \tabularnewline
 	\hline 
-	 05 & -0.1299242582583448E-08 & -0.3333333611137316E+00 \tabularnewline
+	 05 & 0.1299242582583448E-08 & 0.3333333611137316E+00 \tabularnewline
 	\hline 
 	 06 & 0.0000000000000000E+00 & 0.0000000000000000E+00 \tabularnewline
 	\hline 
 \end{tabularx}
 \end{table}
-\noindent Further.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent As we can see, $E_{n+1}/E^3_n$ converges quickly to a constant. This means that Newton's method converges cubically for $f(x)=\sin(x)$. This might be because the sine function is almost linear near roots ($f''(x)=-\sin(x)=-f(x)=0$ when $f(x)=0$), so this should help speed up the convergence rate.
 
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{$e^{-1/x}$}
-
-\begin{table}[htbp]
+We note that the derivative of $f(x) = e^{-1/x}$ is $f'(x) = \frac{e^{-1/x}}{x^2}$, which is undefined at $0$. From this we can see that every derivative of $f(x) = e^{-1/x}$ is an exponential multiplied by a rational function with a singularity at $0$ so that every derivative is undefined at the root. We then expect Newton's method to have extraordinarily slow convergence. A table containing the error ratios between successive iterations is below: 
+\begin{table}[H]
 	\centering
 	\begin{tabularx}{1\textwidth}{ |>{\setlength\hsize{0.5\hsize}\centering}X| >{\setlength\hsize{1.25\hsize}\centering}X|>{\setlength\hsize{1.25\hsize}\centering}X| } 
 	  \hline
 	Iteration & $$E_{n+1}/E_{n}$$ & $$E_{n+1}/E_{n}^2$$\tabularnewline
 	\hline 
-	 01 & -0.1000000000000000E-03 & -0.1000000000000000E-03 \tabularnewline
+	 01 & 0.1000000000000000E-03 & 0.1000000000000000E-03 \tabularnewline
 	\hline 
-	 02 & 0.9801000000000002E+00 & -0.9801000000000002E+04 \tabularnewline
+	 02 & 0.9801000000000002E+00 & 0.9801000000000002E+04 \tabularnewline
 	\hline 
-	 03 & 0.9802980099999998E+00 & -0.1000202030405060E+05 \tabularnewline
+	 03 & 0.9802980099999998E+00 & 0.1000202030405060E+05 \tabularnewline
 	\hline 
-	 04 & 0.9804920990079601E+00 & -0.1020506060403061E+05 \tabularnewline
+	 04 & 0.9804920990079601E+00 & 0.1020506060403061E+05 \tabularnewline
 	\hline 
-	 05 & 0.9806823827241055E+00 & -0.1041012070006161E+05 \tabularnewline
+	 05 & 0.9806823827241055E+00 & 0.1041012070006161E+05 \tabularnewline
 	\hline 
-	 06 & 0.9808689723299778E+00 & -0.1061720039624038E+05 \tabularnewline
+	 06 & 0.9808689723299778E+00 & 0.1061720039624038E+05 \tabularnewline
 	\hline 
-	 07 & 0.9810519747073182E+00 & -0.1082629950052112E+05 \tabularnewline
+	 07 & 0.9810519747073182E+00 & 0.1082629950052112E+05 \tabularnewline
 	\hline 
-	 08 & 0.9812314926443280E+00 & -0.1103741782460229E+05 \tabularnewline
+	 08 & 0.9812314926443280E+00 & 0.1103741782460229E+05 \tabularnewline
 	\hline 
-	 09 & 0.9814076250301539E+00 & -0.1125055518381782E+05 \tabularnewline
+	 09 & 0.9814076250301539E+00 & 0.1125055518381782E+05 \tabularnewline
 	\hline 
-	 10 & 0.9815804670383682E+00 & -0.1146571139703251E+05 \tabularnewline
+	 10 & 0.9815804670383682E+00 & 0.1146571139703251E+05 \tabularnewline
 	\hline 
-	 11 & 0.9817501103001732E+00 & -0.1168288628654150E+05 \tabularnewline
+	 11 & 0.9817501103001732E+00 & 0.1168288628654150E+05 \tabularnewline
 	\hline 
-	 12 & 0.9819166430679892E+00 & -0.1190207967797336E+05 \tabularnewline
+	 12 & 0.9819166430679892E+00 & 0.1190207967797336E+05 \tabularnewline
 	\hline 
-	 13 & 0.9820801503700450E+00 & -0.1212329140019697E+05 \tabularnewline
+	 13 & 0.9820801503700450E+00 & 0.1212329140019697E+05 \tabularnewline
 	\hline 
-	 14 & 0.9822407141565502E+00 & -0.1234652128523173E+05 \tabularnewline
+	 14 & 0.9822407141565502E+00 & 0.1234652128523173E+05 \tabularnewline
 	\hline 
-	 15 & 0.9823984134379694E+00 & -0.1257176916816113E+05 \tabularnewline
+	 15 & 0.9823984134379694E+00 & 0.1257176916816113E+05 \tabularnewline
 	\hline 
 \end{tabularx}
 \end{table}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent We see that that the ratio of $E_{n+1}/E_{n}$ is fairly constant and close to $1$, which indicates very slow linear convergence as expected.
 
 \end{document}

@@ -6,7 +6,7 @@
 #
 #
 # Here is the generic file
-$cmdFile="./newtonS.f90.Template";
+$cmdFile="./newtonSCubic.f90.Template";
 $outFile="./newtonS.f90";
 
 # Functions to test
