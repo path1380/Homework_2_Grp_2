@@ -6,4 +6,8 @@ This repo contains a Newton's Method solver and a Perl script for running the so
 $ perl NewtonS.p
 ```
 
-Several functions have been tested with the solver, and the results have been documented in `Report.tex`. 
+Several functions have been tested with the solver, and the results have been documented in `Report.tex`. In addition, some extra data to determine cubic convergence was used. This code can be run via 
+
+```bash
+$ perl NewtonSCubic.p
+```
